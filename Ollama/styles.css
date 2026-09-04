@@ -167,15 +167,6 @@
       gap: 18px;
     }
 
-    /* Keep the archive visually ordered by historical publication date. */
-    .archive-releases > article:nth-of-type(4) {
-      order: -2;
-    }
-
-    .archive-releases > article:nth-of-type(5) {
-      order: -1;
-    }
-
     .download-card {
       display: flex;
       flex-direction: column;

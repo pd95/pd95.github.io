@@ -46,6 +46,17 @@
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll(selectors.join(',')).forEach(addCopyButton);
 
+    const archive = document.querySelector('.archive-releases');
+    const lateAugustCards = archive
+      ? [
+          archive.querySelector('.archive-release-20260823'),
+          archive.querySelector('.archive-release-20260822'),
+        ].filter(Boolean)
+      : [];
+    if (archive && lateAugustCards.length > 0) {
+      archive.prepend(...lateAugustCards);
+    }
+
     document.querySelectorAll('.archive-releases .download-card').forEach((card) => {
       const terms = Array.from(card.querySelectorAll('dt'));
       const term = terms.find((node) => node.textContent.trim() === 'Highlights')
