@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Create GPT-OSS, Apertus 1.0, Apertus 1.1 Mini, Apertus 1.5 Omni, and Gemma 4 MLX test models from Hugging Face safetensors for Ollama preview builds." />
+
+  <meta property="og:title" content="Ollama MLX Test Models" />
+  <meta property="og:description" content="Download model weights, write portable Modelfiles, and create GPT-OSS, Apertus, and Gemma 4 MLX models locally." />
+  <meta property="og:image" content="AppIcon.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="AppIcon.png" />
+  <link rel="apple-touch-icon" href="AppIcon.png" />
+  <title>Ollama MLX Test Models</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="model-page">
+    <header>
+      <img src="AppIcon.png" alt="Ollama app icon" />
+      <div>
+        <h1>MLX Test Models</h1>
+        <p class="subtitle">
+          Create GPT-OSS, Apertus (1.0, 1.1 Mini, 1.5 Omni), and
+          Gemma 4 models locally from their Hugging Face safetensors for
+          supported Ollama MLX preview builds.
+        </p>
+        <nav class="page-links" aria-label="Release pages">
+          <a href="index.html">Current builds</a>
+          <a href="build.html">Build source</a>
+          <a href="models.html" aria-current="page">Models</a>
+          <a href="archive.html">Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="notice" aria-label="Preview requirement">
+      <h2>Before you start</h2>
+      <p>
+        Use the latest signed <a href="index.html">preview DMG</a> unless you
+        are reproducing an older release. GPT-OSS and Apertus 1.0 are available
+        in every listed MLX preview build. Gemma 4 and Apertus 1.5 Omni require
+        v0.31.2 or newer. Apertus 1.1 Mini requires v0.32.6 or newer.
+      </p>
+      <p>
+        Capability chips summarize the validated behavior of each recipe.
+        Support and answer quality can differ for larger or more heavily
+        quantized variants. Accept each model repository's license on Hugging
+        Face, install the <code>hf</code> CLI, and authenticate before
+        downloading gated weights.
+      </p>
+      <p>
+        <strong>Known Apertus Mini limitation:</strong> the currently published
+        and locally imported v1.1 Mini artifacts can produce nonsensical chat
+        responses and may disregard supplied conversation information. This affects
+        all 0.5B, 1.5B, and 4B BF16/NVFP4 variants. Do not use them for
+        conversational workloads while the cause is investigated.
+      </p>
+    </section>
+
+    <article>
+      <h2>1. Prepare the model tools</h2>
+      <p>Run these commands from the directory where you keep local model snapshots and Modelfiles.</p>
+      <pre><code>brew install hf
+hf auth login
+mkdir -p models</code></pre>
+      <p>
+        A Python installation of the CLI also works:
+        <code>python3 -m pip install -U "huggingface_hub[cli]"</code>.
+      </p>
+    </article>
+
+    <section class="import-section" aria-labelledby="import-model">
+      <h2 id="import-model">2. Import the model</h2>
+      <p>
+        Choose a locally imported model recipe or a published model family below.
+        Local recipes download a Hugging Face snapshot, create a Modelfile, then
+        import it into Ollama. Published models can be pulled directly.
+      </p>
+
+      <div class="model-grid" aria-label="Model creation recipes">
+        <article class="model-recipe">
+          <div class="model-heading">
+            <div>
+              <h3>GPT-OSS 20B</h3>
+              <div class="capabilities" aria-label="Capabilities">
+                <span class="tag">Text</span>
+                <span class="tag">Reasoning</span>
+                <span class="tag">Tools</span>
+              </div>
+            </div>
+            <a class="provider-link" target="_blank" rel="noopener noreferrer" href="https://huggingface.co/openai/gpt-oss-20b">Hugging Face</a>
+          </div>
+          <p>
+            GPT-OSS needs its full Harmony template for reasoning levels, tools,
+            and correct message formatting. Use the prepared portable Modelfile,
+            which retains that full template and points at the local HF snapshot.
+          </p>
+          <h4>Download</h4>
+          <pre><code>hf download openai/gpt-oss-20b \
+  --local-dir ./models/gpt-oss-20b-hf</code></pre>
+          <h4>Get the complete Modelfile</h4>
+          <p>
+            <a href="Modelfile.gptoss-20b" download>Download
+            <code>Modelfile.gptoss-20b</code></a> and save it in the source
+            checkout beside the <code>models</code> directory. Its first line is:
+          </p>
+          <pre><code>FROM ./models/gpt-oss-20b-hf</code></pre>
+          <p>
+            Alternatively, export the official definition with
+            <code>ollama show --modelfile gpt-oss:20b</code> and replace only its
+            active <code>FROM</code> line with the line above.
+          </p>
+          <h4>Import in the recommended compact format</h4>
+          <pre><code>ollama create --experimental -q mxfp4 \
+  gptoss-mlx:20b-mxfp4 -f ./Modelfile.gptoss-20b</code></pre>
+        </article>
+
+        <article class="model-recipe">
+          <div class="model-heading">
+            <div>
+              <h3>Gemma 4 E4B</h3>
+              <div class="capabilities" aria-label="Capabilities">
+                <span class="tag">Text</span>
+                <span class="tag">Tools</span>
+                <span class="tag">Image</span>
+                <span class="tag">Audio</span>
+              </div>
+            </div>
+            <a class="provider-link" target="_blank" rel="noopener noreferrer" href="https://huggingface.co/google/gemma-4-E4B-it">Hugging Face</a>
+          </div>
+          <p>
+            E4B is the recommended smaller Gemma 4 test model. Its MLX path
+            accepts JPEG, PNG, WebP, WAV, and MP3 input and supports tool calls.
+          </p>
+          <h4>Download</h4>
+          <pre><code>hf download google/gemma-4-E4B-it \
+  --local-dir ./models/gemma-4-E4B-it</code></pre>
+          <h4>Create <code>Modelfile.gemma4-e4b</code></h4>
+          <pre><code>FROM ./models/gemma-4-E4B-it
+TEMPLATE {{ .Prompt }}
+RENDERER gemma4
+PARSER gemma4
+PARAMETER temperature 1
+PARAMETER top_k 64
+PARAMETER top_p 0.95</code></pre>
+          <h4>Import and quantize</h4>
+          <pre><code>ollama create --experimental -q nvfp4 \
+  gemma4:e4b-mlx -f ./Modelfile.gemma4-e4b</code></pre>
+        </article>
+
+        <article class="model-recipe">
+          <div class="model-heading">
+            <div>
+              <h3>Apertus 1.5 Omni 8B</h3>
+              <div class="capabilities" aria-label="Capabilities">
+                <span class="tag">Text</span>
+                <span class="tag">Tools</span>
+                <span class="tag">Image</span>
+                <span class="tag">Audio</span>
+              </div>
+            </div>
+            <a class="provider-link" target="_blank" rel="noopener noreferrer" href="https://huggingface.co/swiss-ai/Apertus-v1.5-8B">Hugging Face</a>
+          </div>
+          <p>
+            Apertus 1.5 Omni adds native image and audio tokenizers to the Apertus
+            runtime. Tool calls require thinking to be disabled. Review and accept
+            its license and acceptable-use policy first.
+          </p>
+          <h4>Download</h4>
+          <pre><code>hf download swiss-ai/Apertus-v1.5-8B \
+  --local-dir ./models/Apertus-v1.5-8B</code></pre>
+          <h4>Create <code>Modelfile.apertus-1.5-8b</code></h4>
+          <pre><code>FROM ./models/Apertus-v1.5-8B
+TEMPLATE {{ .Prompt }}
+RENDERER apertus1p5
+PARSER apertus
+PARAMETER temperature 0.8
+PARAMETER top_p 0.9
+PARAMETER stop "&lt;/s&gt;"
+PARAMETER stop "&lt;|assistant_end|&gt;"
+PARAMETER stop "&lt;|tools_suffix|&gt;"</code></pre>
+          <h4>Import and quantize</h4>
+          <pre><code>ollama create --experimental -q nvfp4 \
+  apertus-1.5:8b-mlx -f ./Modelfile.apertus-1.5-8b</code></pre>
+        </article>
+
+        <article class="model-recipe">
+          <div class="model-heading">
+            <div>
+              <h3>Apertus 1.1 Mini</h3>
+              <div class="capabilities" aria-label="Capabilities">
+                <span class="tag">Text</span>
+                <span class="tag">Known issue</span>
+              </div>
+            </div>
+          </div>
+          <p>
+            Available in 0.5B, 1.5B, and 4B sizes, but not recommended for
+            conversational use: all current BF16 and NVFP4 variants can produce
+            nonsensical chat responses or disregard supplied conversation information.
+            Select a source below only for investigation or reproduction.
+          </p>
+          <div class="source-tabs" data-source-tabs>
+            <div class="source-tablist" role="tablist" aria-label="Apertus 1.1 Mini source">
+              <button class="source-tab" type="button" role="tab" id="apertus-mini-hf-tab" aria-selected="true" aria-controls="apertus-mini-hf-panel">Hugging Face</button>
+              <button class="source-tab" type="button" role="tab" id="apertus-mini-registry-tab" aria-selected="false" aria-controls="apertus-mini-registry-panel" tabindex="-1">Ollama Registry</button>
+            </div>
+            <section class="source-panel" role="tabpanel" id="apertus-mini-hf-panel" aria-labelledby="apertus-mini-hf-tab">
+              <p>
+                Reproduce the 4B BF16 import from its <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/swiss-ai/Apertus-v1.1-4B-Instruct">Hugging Face model card</a>
+                for investigation. Use the equivalent 0.5B or 1.5B Instruct source
+                when reproducing those sizes.
+              </p>
+              <h4>Download the release-tested source revision</h4>
+              <pre><code>hf download swiss-ai/Apertus-v1.1-4B-Instruct \
+  --revision 0d004ae50a03fda815ff7a091a89ab0baec94f3d \
+  --local-dir ./models/Apertus-v1.1-4B-Instruct</code></pre>
+              <h4>Create <code>Modelfile.apertus-1.1-4b</code></h4>
+              <pre><code>FROM ./models/Apertus-v1.1-4B-Instruct
+PARAMETER temperature 0.8
+PARAMETER top_p 0.9
+PARAMETER stop "&lt;/s&gt;"
+PARAMETER stop "&lt;SPECIAL_68&gt;"
+PARAMETER stop "&lt;SPECIAL_72&gt;"
+TEMPLATE {{ .Prompt }}
+RENDERER apertus1p1
+PARSER apertus1p1</code></pre>
+              <h4>Import</h4>
+              <pre><code>ollama create --experimental -q nvfp4 \
+  apertus-mini-mlx:4b-nvfp4 -f ./Modelfile.apertus-1.1-4b</code></pre>
+            </section>
+            <section class="source-panel" role="tabpanel" id="apertus-mini-registry-panel" aria-labelledby="apertus-mini-registry-tab" hidden>
+              <p>
+                Pull a currently published artifact from the <a target="_blank" rel="noopener noreferrer" href="https://ollama.com/pd95/apertus-mini-mlx">Ollama Registry</a>
+                for investigation only. These models require an MLX preview build with
+                <code>ApertusForCausalLM</code> support (v0.32.6 or newer) and do not
+                run in the regular Ollama app.
+              </p>
+              <h4>Pull the recommended NVFP4 models</h4>
+              <pre><code>ollama pull pd95/apertus-mini-mlx:0.5b
+ollama pull pd95/apertus-mini-mlx:1.5b
+ollama pull pd95/apertus-mini-mlx:4b</code></pre>
+              <h4>Pull an explicit BF16 model</h4>
+              <pre><code>ollama pull pd95/apertus-mini-mlx:4b-bf16</code></pre>
+              <p>
+                To pin a validated artifact instead of a moving convenience tag, use
+                a tag such as <code>pd95/apertus-mini-mlx:4b-nvfp4-v0.32.15-r2</code>.
+                See the <a target="_blank" rel="noopener noreferrer" href="https://ollama.com/pd95/apertus-mini-mlx/tags">full tag list</a>.
+              </p>
+            </section>
+          </div>
+        </article>
+
+        <article class="model-recipe">
+          <div class="model-heading">
+            <div>
+              <h3>Apertus 1.0 8B</h3>
+              <div class="capabilities" aria-label="Capabilities">
+                <span class="tag">Text</span>
+              </div>
+            </div>
+          </div>
+          <p>
+            Apertus 1.0 is the text-generation path supported by the older
+            Apertus MLX previews. It uses the <code>apertus</code> renderer, not
+            the newer <code>apertus1p5</code> renderer. Tool calling is not
+            advertised for this model path because it was never validated
+            reliably.
+          </p>
+          <div class="source-tabs" data-source-tabs>
+            <div class="source-tablist" role="tablist" aria-label="Apertus 1.0 source">
+              <button class="source-tab" type="button" role="tab" id="apertus-8b-hf-tab" aria-selected="true" aria-controls="apertus-8b-hf-panel">Hugging Face</button>
+              <button class="source-tab" type="button" role="tab" id="apertus-8b-registry-tab" aria-selected="false" aria-controls="apertus-8b-registry-panel" tabindex="-1">Ollama Registry</button>
+            </div>
+            <section class="source-panel" role="tabpanel" id="apertus-8b-hf-panel" aria-labelledby="apertus-8b-hf-tab">
+              <p>Build locally from the <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/swiss-ai/Apertus-8B-Instruct-2509">Hugging Face model card</a>.</p>
+              <h4>Download the release-tested revision</h4>
+              <pre><code>hf download swiss-ai/Apertus-8B-Instruct-2509 \
+  --revision 50761a511195fde9d958f62f3b6344329d4bd191 \
+  --local-dir ./models/Apertus-8B-50761a5</code></pre>
+              <h4>Create <code>Modelfile.apertus-1.0-8b</code></h4>
+              <pre><code>FROM ./models/Apertus-8B-50761a5
+TEMPLATE {{ .Prompt }}
+RENDERER apertus
+PARSER apertus
+PARAMETER temperature 0.8
+PARAMETER top_p 0.9
+PARAMETER stop "&lt;/s&gt;"
+PARAMETER stop "&lt;|assistant_end|&gt;"
+PARAMETER stop "&lt;|tools_suffix|&gt;"</code></pre>
+              <h4>Import and quantize</h4>
+              <pre><code>ollama create --experimental -q nvfp4 \
+  apertus-mlx:8b-nvfp4 -f ./Modelfile.apertus-1.0-8b</code></pre>
+            </section>
+            <section class="source-panel" role="tabpanel" id="apertus-8b-registry-panel" aria-labelledby="apertus-8b-registry-tab" hidden>
+              <p>Pull a validated prebuilt artifact from the <a target="_blank" rel="noopener noreferrer" href="https://ollama.com/pd95/apertus-mlx">Ollama Registry</a>.</p>
+              <h4>Pull the recommended NVFP4 model</h4>
+              <pre><code>ollama pull pd95/apertus-mlx:8b</code></pre>
+              <h4>Pin the validated r2 artifact</h4>
+              <pre><code>ollama pull pd95/apertus-mlx:8b-nvfp4-v0.32.15-r2</code></pre>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <article>
+      <h2>3. Run and test the models</h2>
+      <p>Start the selected preview server in one terminal:</p>
+      <pre><code>ollama serve</code></pre>
+      <p>Then use another terminal for text, image, or audio prompts:</p>
+      <pre><code>ollama run gptoss-mlx:20b-mxfp4 "Reply with exactly OK"
+ollama run apertus-mlx:8b-nvfp4 "Hello"
+ollama run gemma4:e4b-mlx "Hello"
+ollama run gemma4:e4b-mlx "Describe ./photo.webp"
+ollama run gemma4:e4b-mlx "Summarize ./recording.mp3"
+ollama run apertus-1.5:8b-mlx "Compare ./photo.png and ./recording.wav"</code></pre>
+      <p>
+        File paths are resolved locally and may be combined in one prompt in
+        the order the model should receive them. Keep audio clips at 30 seconds
+        or shorter for these preview builds.
+      </p>
+    </article>
+
+    <article>
+      <h2>Other checkpoints and troubleshooting</h2>
+      <ul>
+        <li>Gemma 4 E2B and unified 12B use the same workflow with <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/google/gemma-4-E2B-it"><code>google/gemma-4-E2B-it</code></a> and <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/google/gemma-4-12B-it"><code>google/gemma-4-12B-it</code></a>.</li>
+        <li>GPT-OSS 120B uses <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/openai/gpt-oss-120b"><code>openai/gpt-oss-120b</code></a> and the official <code>gpt-oss:120b</code> Modelfile, but requires substantially more memory.</li>
+        <li>Apertus 1.0 70B uses <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/swiss-ai/Apertus-70B-Instruct-2509"><code>swiss-ai/Apertus-70B-Instruct-2509</code></a>, the <code>apertus</code> renderer, and substantially more memory.</li>
+        <li>Apertus 1.1 Mini BF16 and NVFP4 artifacts are retained for investigation only because of a known conversation-quality issue across all published sizes. They use the <code>apertus1p1</code> renderer and parser.</li>
+        <li>The importer also accepts published MLX affine layouts at INT2, INT3, INT4, INT5, INT6, and INT8 directly. Use that workflow only when evaluating a specific upstream MLX checkpoint rather than the published Mini artifacts.</li>
+        <li>When importing a BF16 source, omit the <code>-q ...</code> option to retain BF16 precision; this uses considerably more disk and memory. Do not pass <code>-q</code> when directly importing a published affine checkpoint.</li>
+        <li>For GPT-OSS, <code>mxfp4</code> is the validated compact default; do not substitute a minimal Modelfile for the full official Harmony template.</li>
+        <li>A 401 or 403 download error usually means the repository terms have not been accepted or <code>hf auth login</code> has not completed.</li>
+        <li>A missing shard or <code>config.json</code> means the local snapshot is incomplete; rerun <code>hf download</code> before calling create.</li>
+        <li>Published prebuilt test models remain available at <a href="https://ollama.com/pd95/">ollama.com/pd95</a>.</li>
+      </ul>
+    </article>
+
+    <footer>
+      <p>
+        Model weights are downloaded from their respective publishers and remain
+        subject to those publishers' licenses and usage policies.
+      </p>
+      <p>
+        AI assistance disclosure: this page's release notes and explanatory copy
+        were edited with AI assistance and reviewed before publication.
+      </p>
+    </footer>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Technical documentation and project notes." />
+  <title>pd95 — Technical Documentation</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f7f2;
+      --ink: #1b1d1f;
+      --muted: #626a73;
+      --line: #d9ded9;
+      --panel: #ffffff;
+      --shadow: rgba(20, 28, 31, 0.07);
+      --link: #126a63;
+      --link-hover: #0d554f;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121416;
+        --ink: #f4f1ea;
+        --muted: #b6b0a5;
+        --line: #343a3b;
+        --panel: #1d2022;
+        --shadow: rgba(0, 0, 0, 0.32);
+        --link: #8ad9cd;
+        --link-hover: #b2ebe3;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    main {
+      width: min(760px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    header { margin-bottom: 32px; }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1;
+    }
+
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    article {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 12px 28px var(--shadow);
+    }
+
+    .project-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    article p {
+      margin: 12px 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    a {
+      color: var(--link);
+      font-weight: 650;
+      text-underline-offset: 3px;
+    }
+
+    a:hover,
+    a:focus-visible { color: var(--link-hover); }
+
+    footer {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer a { font-weight: 500; }
+
+    @media (max-width: 560px) {
+      main {
+        width: min(100% - 24px, 760px);
+        padding: 28px 0;
+      }
+
+      .project-heading {
+        display: grid;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+    <h1>pd95</h1>
+    <p>Technical projects and documentation.</p>
+    </header>
+
+    <section aria-label="Documentation projects">
+      <article>
+        <div class="project-heading">
+<h2>Ollama / MLX</h2>
+<span class="meta">macOS · Apple Silicon</span>
+        </div>
+<p>
+Notarized Ollama builds with MLX-native runners for selected models, source build instructions, and compatibility notes.</p>
+        <nav aria-label="Ollama documentation">
+          <a href="/Ollama/">Current builds</a>
+          <a href="/Ollama/build.html">Build from source</a>
+          <a href="/Ollama/models.html">Models</a>
+          <a href="/Ollama/archive.html">Archive</a>
+        </nav>
+      </article>
+    </section>
+
+    <footer>
+  GitHub: <a href="https://github.com/pd95">github.com/pd95</a>
+    </footer>
+  </main>
+</body>
+</html>

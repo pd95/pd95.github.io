@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Build the Ollama MLX preview source locally on Apple Silicon macOS from the published preview branches and tags." />
+
+  <meta property="og:title" content="Build Ollama MLX Preview From Source" />
+  <meta property="og:description" content="Install macOS build tools, clone the preview source tag, build the CLI/server or locally signed app, and run Ollama locally." />
+  <meta property="og:image" content="AppIcon.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="AppIcon.png" />
+  <link rel="apple-touch-icon" href="AppIcon.png" />
+  <title>Build Ollama MLX Preview From Source</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="model-page">
+    <header>
+      <img src="AppIcon.png" alt="Ollama app icon" />
+      <div>
+        <h1>Build From Source</h1>
+        <p class="subtitle">
+          Build the Ollama MLX preview locally on Apple Silicon macOS when you
+          want to inspect the source, avoid a binary download, or test a preview
+          tag directly.
+        </p>
+        <nav class="page-links" aria-label="Release pages">
+          <a href="index.html">Current builds</a>
+          <a href="build.html" aria-current="page">Build source</a>
+          <a href="models.html">Models</a>
+          <a href="archive.html">Archive</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="notice" aria-label="Preview scope">
+      <h2>Before you start</h2>
+      <p>
+        These instructions build Ollama from the public preview source. They are
+        intended for Apple Silicon Macs and MLX experimentation. For normal
+        installation, use the latest signed
+        <a href="index.html">preview DMG</a>.
+      </p>
+      <p>
+        The app-bundle command below performs local ad hoc signing when no
+        Apple Developer ID is configured. That produces a local test app, not a
+        notarized redistributable DMG.
+      </p>
+    </section>
+
+    <article>
+      <h2>1. Install macOS build tools</h2>
+      <p>
+        Install Homebrew from
+        <a target="_blank" rel="noopener noreferrer" href="https://brew.sh/">brew.sh</a>
+        first if it is not already installed. Homebrew's installer also installs
+        Apple's command line tools when they are missing.
+      </p>
+      <p>
+        Then install the build tools and download the Metal toolchain component:
+      </p>
+      <pre><code>brew install go cmake ninja node
+xcodebuild -downloadComponent MetalToolchain</code></pre>
+      <p>
+        The important requirements are an Apple Silicon macOS environment, Go,
+        CMake 3.24 or newer, Ninja, Git from Apple's command line tools, npm for
+        the app UI, and Apple's Metal toolchain.
+      </p>
+    </article>
+
+    <article>
+      <h2>2. Clone the latest preview tag</h2>
+      <p>
+        Use the immutable preview tag for a reproducible build. The moving
+        integration branch is useful for following current development, but a
+        tag records the source state used for a published preview.
+      </p>
+      <pre><code>git clone \
+  --branch preview/mlx-0.33.2-20260831 \
+  https://github.com/pd95/ollama.git
+cd ollama</code></pre>
+      <p>
+        Current source branch:
+        <a href="https://github.com/pd95/ollama/tree/staging/v0.33.2/integration">
+          integration v0.33.2
+        </a>.
+        Current preview tag:
+        <a href="https://github.com/pd95/ollama/tree/preview/mlx-0.33.2-20260831">
+          preview/mlx-0.33.2-20260831
+        </a>.
+      </p>
+    </article>
+
+    <article>
+      <h2>3. Build and run the server</h2>
+      <p>
+        For a quick source test, build the local Ollama CLI/server binary with
+        CMake, then start the server from the source checkout.
+      </p>
+      <pre><code>cmake -B build .
+cmake --build build --parallel 8
+./ollama serve</code></pre>
+      <p>
+        Leave the server running in that terminal. Use another terminal for
+        <code>ollama run</code>, <code>ollama create --experimental</code>, or
+        API tests.
+      </p>
+    </article>
+
+    <article>
+      <h2>4. Build the full app locally</h2>
+      <p>
+        To build <code>dist/Ollama.app</code>, use the Darwin build helper. On
+        Apple Silicon, the arm64-only build is the practical local path.
+      </p>
+      <pre><code>./scripts/build_darwin.sh -a arm64 build app
+open dist/Ollama.app</code></pre>
+      <p>
+        When <code>APPLE_IDENTITY</code> is not set, the helper ad hoc signs the
+        app bundle and removes quarantine metadata so it can launch locally. It
+        also writes <code>dist/Ollama-darwin.zip</code> and
+        <code>dist/ollama-darwin.tgz</code> for local inspection.
+      </p>
+      <p>
+        Developer ID signing and notarized DMG packaging require Apple account
+        credentials and are separate from this local app build. Do not
+        redistribute the ad hoc signed app bundle.
+      </p>
+    </article>
+
+    <article>
+      <h2>5. Create local models</h2>
+      <p>
+        The preview source does not include model weights. Download model
+        snapshots from their official Hugging Face repositories, accept the
+        publisher license terms where required, and create local Ollama models.
+      </p>
+      <p>
+        Follow the <a href="models.html">model recipes</a> for GPT-OSS, Apertus
+        1.0, Apertus 1.1 Mini, Apertus 1.5 Omni, and Gemma 4. <br/>
+        Apertus 1.5 users
+        need to obtain the official
+        <a target="_blank" rel="noopener noreferrer" href="https://huggingface.co/swiss-ai/Apertus-v1.5-8B">
+          swiss-ai/Apertus-v1.5-8B
+        </a>
+        snapshot before importing it locally.
+      </p>
+    </article>
+
+    <footer>
+      <p>
+        Preview branches and tags are published from a personal fork and are not
+        official Ollama releases. Model weights remain subject to their
+        publishers' licenses and usage policies.
+      </p>
+      <p>
+        AI assistance disclosure: this page's release notes and explanatory copy
+        were edited with AI assistance and reviewed before publication.
+      </p>
+    </footer>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
