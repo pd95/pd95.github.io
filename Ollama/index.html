@@ -50,10 +50,42 @@
         <article class="download-card primary">
           <div class="card-heading">
             <div>
+              <h2>Ollama 0.34.1 MLX preview</h2>
+              <span class="build-meta">Published September 18, 2026 &middot; signed and notarized macOS DMG</span>
+            </div>
+            <span class="badge">Latest</span>
+          </div>
+
+          <dl class="details">
+            <div><dt>File</dt><dd>Ollama-0.34.1-30-gc8b964e-mlx-preview-v0.34.1.dmg</dd></div>
+            <div><dt>Size</dt><dd>192.5 MB</dd></div>
+            <div><dt>SHA-256</dt><dd><code>bf0da003659be88682e1605628364d559c2cddffabae6f52f18cde57ae94f845</code></dd></div>
+            <div><dt>Upstream</dt><dd>Ollama v0.34.1 @ <code>38fdb5dd58c7</code></dd></div>
+            <div><dt>Source</dt><dd><a href="https://github.com/pd95/ollama/tree/staging/v0.34.1/integration">integration v0.34.1</a> at <a href="https://github.com/pd95/ollama/commit/c8b964edbd07964b35b85b730aab82d3b2b88f4d">c8b964edbd07</a></dd></div>
+            <div><dt>Build tag</dt><dd><a href="https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.34.1-20260917">preview/mlx-0.34.1-20260917 @ a6cb9367</a></dd></div>
+            <div><dt>Changes</dt><dd><a href="https://github.com/ollama/ollama/compare/v0.34.1...pd95:ollama:a6cb936736813007cfc549181bc710a6d1031506">compare v0.34.1...preview build</a></dd></div>
+            <div>
+              <dt>Highlights</dt>
+              <dd><span class="highlight-groups">
+                <span class="highlight-group"><span class="highlight-label">Official Ollama v0.34.1</span><span>Updated official baseline with the current app, API, model-create, and runtime behavior from the stable v0.34.1 release.</span></span>
+                <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>Native GPT-OSS and Apertus 1.0/1.1 Mini runtimes with validated thinking and tool calling<br>
+                  Gemma 4 and Apertus 1.5 Omni image/audio with MP3, WebP, cancellation, and bounded media processing<br>
+                  Responses namespace tools, custom apply_patch compatibility, sparse tokenizer allocation, and desktop audio attachments.</span></span>
+                <span class="highlight-group"><span class="highlight-label">Release qualification</span><span>The exact signed, notarized, and stapled DMG passed capability, compatibility, balanced performance, memory, cleanup, and Gatekeeper checks. Existing public model aliases remain unchanged.</span></span>
+              </span></dd>
+            </div>
+          </dl>
+
+          <a class="download-button" href="https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.34.1-20260917/Ollama-0.34.1-30-gc8b964e-mlx-preview-v0.34.1.dmg">Download DMG</a>
+        </article>
+
+        <article class="download-card">
+          <div class="card-heading">
+            <div>
               <h2>Ollama 0.33.3 MLX preview</h2>
               <span class="build-meta">Published September 5, 2026 &middot; signed and notarized macOS DMG</span>
             </div>
-            <span class="badge">Latest</span>
+            <span class="badge">Previous</span>
           </div>
 
           <dl class="details">
@@ -425,17 +457,19 @@
             <div class="branch-item">
               <div class="branch-heading">
                 <strong>Responses tools and Ollama fixes</strong>
-                <span class="branch-status">PRs #21, #8, #10, #12, #13, #20</span>
+                <span class="branch-status">PRs #31, #28, #29, #32, #10, #12, #13, #30</span>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/pull/21">#21 nested MLX build refresh</a>
-              <a class="branch-link" href="https://github.com/pd95/ollama/pull/8">#8 Responses namespace tools</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/pull/31">#31 nested MLX build refresh</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/pull/28">#28 Darwin source overrides</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/pull/29">#29 MLX Metal install order</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/pull/32">#32 Responses namespace tools</a>
               <a class="branch-link" href="https://github.com/ollama/ollama/pull/16263">#16263 Responses namespace tools (official Ollama PR)</a>
               <a class="branch-link" href="https://github.com/pd95/ollama/pull/10">#10 custom apply_patch tool</a>
               <a class="branch-link" href="https://github.com/pd95/ollama/pull/12">#12 Gemma 4 tool-call safety</a>
               <a class="branch-link" href="https://github.com/pd95/ollama/pull/13">#13 sparse tokenizer allocation</a>
               <span class="branch-link">
-                <a href="https://github.com/pd95/ollama/commit/0caa2be1ebb70df336eca013832ee5f7a64b394d">audio attachments v0.33.3 refresh @ 0caa2be</a>
-                (<a href="https://github.com/pd95/ollama/pull/20">PR #20</a>)
+                <a href="https://github.com/pd95/ollama/commit/89488689bffba0c548999080126e06ed0b7fdde0">audio attachments v0.34.1 refresh @ 8948868</a>
+                (<a href="https://github.com/pd95/ollama/pull/30">PR #30</a>)
               </span>
             </div>
             <div class="branch-item">
@@ -443,35 +477,35 @@
                 <strong>GPT-OSS</strong>
                 <a class="branch-status" href="https://github.com/pd95/ollama/pull/19">PR #19</a>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/commit/7a73c8ac8e61ab7986ff82261e48a4adff1acfde">GPT-OSS v0.33.3 refresh @ 7a73c8a</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/commit/1880ca7ae2c89eacc25f82d0fe6c4de8a9b7d2d6">GPT-OSS v0.34.1 refresh @ 1880ca7</a>
             </div>
             <div class="branch-item">
               <div class="branch-heading">
                 <strong>Apertus 1.0</strong>
                 <a class="branch-status" href="https://github.com/pd95/ollama/pull/6">PR #6</a>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/commit/1d29ce9c51695bba6fdd0a4050ee0c01fc986895">Apertus v0.33.3 refresh @ 1d29ce9</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/commit/fb483ff6edeb653a70a6ae3ced83fe3c1b4976dc">Apertus v0.34.1 refresh @ fb483ff</a>
             </div>
             <div class="branch-item">
               <div class="branch-heading">
                 <strong>Media hardening</strong>
-                <span class="branch-status"><a href="https://github.com/pd95/ollama/pull/23">PR #23</a> · replaces <a href="https://github.com/pd95/ollama/pull/17">#17</a></span>
+                <a class="branch-status" href="https://github.com/pd95/ollama/pull/23">PR #23</a>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/commit/e2ce33720c2c84f779ad5a56b8ef2504d2bc901d">media v0.33.3 refresh @ e2ce337</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/commit/276e227f5f3153d49066974e0b41a49dcb8f6ca8">media v0.34.1 refresh @ 276e227</a>
             </div>
             <div class="branch-item">
               <div class="branch-heading">
                 <strong>Apertus 1.5 Omni</strong>
-                <span class="branch-status"><a href="https://github.com/pd95/ollama/pull/24">PR #24</a> · replaces <a href="https://github.com/pd95/ollama/pull/15">#15</a></span>
+                <a class="branch-status" href="https://github.com/pd95/ollama/pull/33">PR #33</a>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/commit/d497d6ac219a4442d9498b1c0ef622ea25b5e0dd">Apertus 1.5 v0.33.3 refresh @ d497d6a</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/commit/43f84ede5d924e6a7af115991691bc83cab8b23b">Apertus 1.5 v0.34.1 refresh @ 43f84ed</a>
             </div>
             <div class="branch-item">
               <div class="branch-heading">
                 <strong>Apertus 1.1 Mini</strong>
-                <span class="branch-status"><a href="https://github.com/pd95/ollama/pull/25">PR #25</a> · replaces <a href="https://github.com/pd95/ollama/pull/18">#18</a></span>
+                <a class="branch-status" href="https://github.com/pd95/ollama/pull/25">PR #25</a>
               </div>
-              <a class="branch-link" href="https://github.com/pd95/ollama/commit/1c476e81f76d9fcc1d1a4a371db34c9e0504562c">Apertus 1.1 Mini v0.33.3 refresh @ 1c476e8</a>
+              <a class="branch-link" href="https://github.com/pd95/ollama/commit/c8b964edbd07964b35b85b730aab82d3b2b88f4d">Apertus 1.1 Mini v0.34.1 refresh @ c8b964e</a>
             </div>
           </div>
         </aside>
