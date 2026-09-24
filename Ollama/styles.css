@@ -522,16 +522,17 @@
 
     @media (max-width: 720px) {
       main {
-        width: min(100% - 24px, 1120px);
+        width: min(calc(100% - 24px), 1120px);
         padding: 28px 0;
       }
 
       header {
         grid-template-columns: 1fr;
+        gap: 16px;
       }
 
-      header {
-        gap: 16px;
+      header.with-notice {
+        grid-template-columns: 1fr;
       }
 
       header img {
@@ -541,7 +542,7 @@
       }
 
       .release-notice {
-        grid-column: auto;
+        grid-column: 1;
         align-self: stretch;
         margin-top: 0;
       }
