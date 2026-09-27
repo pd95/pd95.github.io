@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "mlx-preview",
+  "channel": "preview",
+  "repository": "pd95/ollama",
+  "marketing_version": "0.34.4",
+  "build_version": "34.4.1",
+  "release_tag": "preview/mlx-0.34.4-20260926",
+  "release_page_url": "https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.34.4-20260926",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "asset": {
+    "name": "Ollama-darwin.zip",
+    "url": "https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.34.4-20260926/Ollama-darwin.zip",
+    "size_bytes": 201814133,
+    "sha256": "05f959f828bad148e7732d15d7af0ece6abfdb7b27ce39eb939771377fb36f9f"
+  }
+}
