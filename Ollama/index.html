@@ -51,10 +51,41 @@
         <article class="download-card primary">
           <div class="card-heading">
             <div>
+              <h2>Ollama 0.40.5 MLX preview</h2>
+              <span class="build-meta">Published October 16, 2026 &middot; signed and notarized macOS DMG</span>
+            </div>
+            <span class="badge">Latest</span>
+          </div>
+
+          <dl class="details">
+            <div><dt>File</dt><dd>Ollama-0.40.5-54-gdc995cc-mlx-preview-v0.40.5.dmg</dd></div>
+            <div><dt>Size</dt><dd>219.4 MB (219,414,221 bytes)</dd></div>
+            <div><dt>SHA-256</dt><dd><code>7ab91fafd6901dd12d478593a769e1b341b35253d9ca100e1cf13a8ab99124ad</code></dd></div>
+            <div><dt>Upstream</dt><dd>Ollama v0.40.5 @ <code>d919272e5359</code></dd></div>
+            <div><dt>Source</dt><dd><a href="https://github.com/pd95/ollama/tree/integration/mlx-preview-v0.40.5">integration v0.40.5</a> at <a href="https://github.com/pd95/ollama/commit/dc995ccefbbb6eadd922ed71ce6f53829ffdceff">dc995ccefbbb</a></dd></div>
+            <div><dt>Build tag</dt><dd><a href="https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.40.5-20261016">preview/mlx-0.40.5-20261016 @ 1dcb6142</a></dd></div>
+            <div><dt>Changes</dt><dd><a href="https://github.com/ollama/ollama/compare/v0.40.5...pd95:ollama:1dcb6142242f14b6d554828e86ec648a395c8518">compare v0.40.5...preview build</a></dd></div>
+            <div>
+              <dt>Highlights</dt>
+              <dd><span class="highlight-groups">
+                  <span class="highlight-group"><span class="highlight-label">Official Ollama v0.40.5</span><span>Light refresh from v0.40.2 with the accepted MLX model and API integrations preserved. Existing model artifacts are unchanged.</span></span>
+                  <span class="highlight-group"><span class="highlight-label">Desktop and API updates</span><span>Includes the Apertus 1.5 image-memory correction, one persisted Command-Q setting, desktop thinking controls, and model-capability discovery. Reconciles upstream custom-tool history with the Responses apply_patch bridge.</span></span>
+                  <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>GPT-OSS, Apertus 1.0 text and Apertus 1.1 Mini runtimes<br>
+                    Gemma 4 and Apertus 1.5 image/audio APIs, Responses namespace tools, custom apply_patch transport, and desktop audio attachments.</span></span>
+              </span><br><span>Known limitations: model-driven Codex command and patch accuracy remain imperfect; full Codex compatibility is not claimed. Performance qualification is incomplete because measured windows reached fair thermal state. The completed GPT-OSS normal-start comparison was within threshold (0.7% difference); no complete four-model or sustained-performance result is claimed. Media caveats remain on the <a href="models.html">model page</a>. See the <a href="https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.40.5-20261016">release notes</a> for qualification details.</span></dd>
+            </div>
+          </dl>
+
+          <a class="download-button" href="https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.40.5-20261016/Ollama-0.40.5-54-gdc995cc-mlx-preview-v0.40.5.dmg">Download DMG</a>
+        </article>
+
+        <article class="download-card">
+          <div class="card-heading">
+            <div>
               <h2>Ollama 0.40.2 MLX preview</h2>
               <span class="build-meta">Published October 9, 2026 &middot; signed and notarized macOS DMG</span>
             </div>
-            <span class="badge">Latest</span>
+            <span class="badge">Previous</span>
           </div>
 
           <dl class="details">
@@ -207,7 +238,9 @@
                 <strong>Build, Responses, and safety</strong>
                 <span class="branch-status">Included commits</span>
               </div>
-              <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/db2f93ec0d47a846beb5ec5e5ce264fa2f515e88">Official v0.40.2 merge @ db2f93e</a> (<a href="https://github.com/pd95/ollama/pull/39">PR #39</a>)</span>
+              <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/ed4a457f81851eaded5ef42429b6dbe44feac625">Official v0.40.5 merge @ ed4a457</a></span>
+              <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/dc995ccefbbb6eadd922ed71ce6f53829ffdceff">Responses custom-tool history @ dc995cc</a></span>
+              <span class="branch-link"><a href="https://github.com/pd95/ollama/pull/40">Apertus 1.5 image memory (PR #40)</a>; <a href="https://github.com/pd95/ollama/pull/44">desktop thinking (PR #44)</a>; <a href="https://github.com/pd95/ollama/pull/45">model capabilities (PR #45)</a></span>
               <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/e91c075d248ab47d7d6a9baf6f57ab1e6dbaca3e">MLX external reconfigure @ e91c075</a> (<a href="https://github.com/pd95/ollama/pull/31">PR #31</a>)</span>
               <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/9a880eda26f601ed0b97bbb322c72d2e035f4a48">Darwin source overrides @ 9a880ed</a> (<a href="https://github.com/pd95/ollama/pull/28">PR #28</a>)</span>
               <span class="branch-link"><a href="https://github.com/pd95/ollama/commit/b4da910a26ab43a8f5f0ea875974f31283f6a968">MLX Metal install order @ b4da910</a> (<a href="https://github.com/pd95/ollama/pull/29">PR #29</a>)</span>
