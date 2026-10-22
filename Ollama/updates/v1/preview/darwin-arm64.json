@@ -3,16 +3,16 @@
   "source": "mlx-preview",
   "channel": "preview",
   "repository": "pd95/ollama",
-  "marketing_version": "0.40.5",
-  "build_version": "40.5.1",
-  "release_tag": "preview/mlx-0.40.5-20261016",
-  "release_page_url": "https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.40.5-20261016",
+  "marketing_version": "0.40.7",
+  "build_version": "40.7.1",
+  "release_tag": "preview/mlx-0.40.7-20261022",
+  "release_page_url": "https://github.com/pd95/ollama/releases/tag/preview%2Fmlx-0.40.7-20261022",
   "platform": "darwin",
   "architecture": "arm64",
   "asset": {
     "name": "Ollama-darwin.zip",
-    "url": "https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.40.5-20261016/Ollama-darwin.zip",
-    "size_bytes": 218103920,
-    "sha256": "ab175f6358a0a53f3b7aa7c22c112ba92da8b81faa75fbea94079797b2de530b"
+    "url": "https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.40.7-20261022/Ollama-darwin.zip",
+    "size_bytes": 218377445,
+    "sha256": "38cf2f02ac9213609a54abaa59963ee26c87ed004340aa0ba76e6e4b793805df"
   }
 }
