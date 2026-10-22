@@ -71,7 +71,7 @@
                   <span class="highlight-group"><span class="highlight-label">Official Ollama v0.40.7</span><span>Updated from v0.40.5 with improved Responses conversation continuation and streamed reasoning/tool ordering, plus upstream reliability fixes.</span></span>
                   <span class="highlight-group"><span class="highlight-label">Refreshed preview integrations</span><span>All fifteen accepted feature streams are rebuilt on the official base, including the corrections from recent lightweight refreshes. Existing published model artifacts are retained.</span></span>
                   <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>GPT-OSS, Apertus 1.0 and Apertus 1.1 Mini runtimes; Gemma 4 and Apertus 1.5 image/audio APIs; Responses namespace and custom apply_patch tools; desktop audio, thinking controls, model information and substring search.</span></span>
-              </span><br><span>Known limitations: model-driven Codex command and patch accuracy remain imperfect; full Codex compatibility is not claimed. Apertus Mini conversation-quality and media caveats remain on the <a href="models.html">model page</a>.</span></dd>
+              </span></dd>
             </div>
           </dl>
 
@@ -102,7 +102,7 @@
                   <span class="highlight-group"><span class="highlight-label">Desktop and API updates</span><span>Includes the Apertus 1.5 image-memory correction, one persisted Command-Q setting, desktop thinking controls, and model-capability discovery. Reconciles upstream custom-tool history with the Responses apply_patch bridge.</span></span>
                   <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>GPT-OSS, Apertus 1.0 text and Apertus 1.1 Mini runtimes<br>
                     Gemma 4 and Apertus 1.5 image/audio APIs, Responses namespace tools, custom apply_patch transport, and desktop audio attachments.</span></span>
-              </span><br><span>Known limitations: model-driven Codex command and patch accuracy remain imperfect; full Codex compatibility is not claimed. Performance qualification is incomplete because measured windows reached fair thermal state. The completed GPT-OSS normal-start comparison was within threshold (0.7% difference); no complete four-model or sustained-performance result is claimed. Media caveats remain on the <a href="models.html">model page</a>.</span></dd>
+              </span></dd>
             </div>
           </dl>
 
@@ -134,8 +134,9 @@
                   <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>Native GPT-OSS runtime with validated thinking and tool calling; Apertus 1.0 text and Apertus 1.1 Mini runtimes (see the <a href="models.html">model caveats</a>)<br>
                     Gemma 4 and Apertus 1.5 Omni image/audio with MP3, WebP, cancellation, and bounded media processing<br>
                     Responses namespace tools, custom apply_patch compatibility, sparse tokenizer allocation, and desktop audio attachments.</span></span>
-              </span><br><span>Known limitations: Codex command fidelity, ordered-image answers on Gemma E4B, and Apertus 1.5 transcription remain imperfect. High image-memory use on Apertus 1.5 is under investigation (<a href="https://github.com/pd95/ollama/issues/36">issue #36</a>); the duplicated Command-Q setting is tracked separately (<a href="https://github.com/pd95/ollama/issues/37">issue #37</a>). See the <a href="models.html">model caveats</a>.</span></dd>
+              </span></dd>
             </div>
+            <div><dt>Build-specific issues</dt><dd>This older build predates the <a href="https://github.com/pd95/ollama/issues/36">Apertus 1.5 image-memory fix</a> and the <a href="https://github.com/pd95/ollama/issues/37">duplicate Command-Q settings fix</a>.</dd></div>
           </dl>
 
           <a class="download-button" href="https://github.com/pd95/ollama/releases/download/preview%2Fmlx-0.40.2-20261009/Ollama-0.40.2-40-gdb2f93e-mlx-preview-v0.40.2.dmg">Download DMG</a>
@@ -168,7 +169,7 @@
                   <span class="highlight-group"><span class="highlight-label">Included MLX preview capabilities</span><span>Native GPT-OSS runtime with validated thinking and tool calling; Apertus 1.0 text and Apertus 1.1 Mini runtimes (see the <a href="models.html">model caveats</a>)<br>
                     Gemma 4 and Apertus 1.5 Omni image/audio with MP3, WebP, cancellation, and bounded media processing<br>
                     Responses namespace tools, custom apply_patch compatibility, sparse tokenizer allocation, and desktop audio attachments.</span></span>
-              </span><br><span>Known limitations: Codex command fidelity, ordered-image answers on Gemma E4B, and fresh Apertus 1.5 transcription remain imperfect; see the <a href="models.html">model caveats</a>.</span></span>
+              </span></span>
                 <button class="expand-toggle" type="button" aria-expanded="false">Show more...</button>
               </span></dd>
             </div>
